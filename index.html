@@ -45,6 +45,11 @@
 </head>
 <body>
  <a href="Login.html">Đăng nhập/Đăng ký</a>
+ <div id="content" style="display:none;">
+    <h1>Xin chào bạn!</h1>
+    <p>Đây là nội dung chỉ người đã đăng nhập mới xem được 👀</p>
+    <button onclick="logout()">Đăng xuất</button>
+  </div>
  <h1>Click to transfer to Youtube! Trust me
  </h1>
  
@@ -77,5 +82,38 @@
       }
     }
   </script>
+ <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+
+  // Cấu hình Firebase của bạn
+  const firebaseConfig = {
+    apiKey: "AIzaSyA8VxReng4DdioYpd8ZKf2lGLda7wz4efw",
+  authDomain: "game-dia-li.firebaseapp.com",
+  projectId: "game-dia-li",
+  };
+
+  // Khởi tạo Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  // Kiểm tra trạng thái người dùng
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      console.log("Đã đăng nhập:", user.email);
+      // Hiển thị nội dung chính
+      document.getElementById("content").style.display = "block";
+    } else {
+      // Nếu chưa đăng nhập -> quay về trang login
+      window.location.href = "login.html";
+    }
+  });
+
+  // Nút đăng xuất
+  window.logout = async () => {
+    await signOut(auth);
+    window.location.href = "login.html";
+  };
+</script>
 </body>
 </html>
