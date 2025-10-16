@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Tạo tài khoản Dia-Li-Quang_Tri</title>
+  <style>
+    body { font-family: sans-serif; display:flex; flex-direction:column; align-items:center; margin-top:50px;}
+    input { margin:5px; padding:8px; width:250px;}
+    button { margin:5px; padding:10px 20px; cursor:pointer;}
+  </style>
+</head>
+<body>
+  <h2>🔐 Đăng nhập / Đăng ký Firebase</h2>
+
+  <input id="email" type="email" placeholder="Email">
+  <input id="password" type="password" placeholder="Mật khẩu">
+
+  <div>
+    <button onclick="dangKy()">Đăng ký</button>
+    <button onclick="dangNhap()">Đăng nhập</button>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } 
+      from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
+
+    // ⚙️ Dán cấu hình Firebase của bạn ở đây:
+    const firebaseConfig = {
+      apiKey: "AIzaSyA8VxReng4DdioYpd8ZKf2lGLda7wz4efw",
+      authDomain: "game-dia-li.firebaseapp.com",
+      projectId: "game-dia-li",
+      storageBucket: "game-dia-li.firebasestorage.app",
+      messagingSenderId: "821102300171",
+      appId: "1:821102300171:web:3e3f4bd3936cf228fe0b0e",
+      measurementId: "G-K54XTCQKL9"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Đăng ký tài khoản
+    window.dangKy = function() {
+      const email = document.getElementById("email").value;
+      const pass = document.getElementById("password").value;
+
+      createUserWithEmailAndPassword(auth, email, pass)
+        .then(() => alert("🎉 Đăng ký thành công!"))
+        .catch(err => alert("❌ " + err.message));
+    }
+
+    // Đăng nhập
+    window.dangNhap = function() {
+      const email = document.getElementById("email").value;
+      const pass = document.getElementById("password").value;
+
+      signInWithEmailAndPassword(auth, email, pass)
+        .then(() => {
+          alert("✅ Đăng nhập thành công!");
+          window.location = "index.html"; // chuyển sang trang chính của bạn
+        })
+        .catch(err => alert("❌ " + err.message));
+    }
+  </script>
+</body>
+</html>
