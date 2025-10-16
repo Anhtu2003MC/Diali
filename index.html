@@ -47,5 +47,27 @@
   <button class="nut-mau">Mở link</button>
 </a>
     <p class="imperial-script-regular">Le anh tu</p>
+ <button onclick="openFull()">🔳 Bật full màn hình</button>
+
+  <iframe 
+    id="gameFrame"
+    src="https://gd.games/games/3f2b3393-4dc6-41ae-bbe4-82a7e5888f41" 
+    width="800" 
+    height="600" 
+    style="border:none; display:block; margin:auto; margin-top:10px;">
+  </iframe>
+
+  <script>
+    function openFull() {
+      const iframe = document.getElementById('gameFrame');
+      if (iframe.requestFullscreen) {
+        iframe.requestFullscreen();
+      } else if (iframe.webkitRequestFullscreen) {
+        iframe.webkitRequestFullscreen();
+      } else if (iframe.msRequestFullscreen) {
+        iframe.msRequestFullscreen();
+      }
+    }
+  </script>
 </body>
 </html>
