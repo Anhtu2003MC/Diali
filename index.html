@@ -4,14 +4,30 @@
  <style>
   body { font-family: "Pacifico", cursive; background: #FAB12F; text-align: center; padding-top: 250px; }
    h1 { color: #BF092F }
-   button { font-family: sans-serif; font-size:16; padding: 20px 40px; border: none; background: #007bff; color: white; border-radius: 8px; cursor: pointer; }
+   .nut-mau {
+            
+            font-family: 'Georgia', serif; 
+            font-size: 20px; 
+            font-weight: bold; 
+            color: #ffffff; 
+            background-color: #007bff; 
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s; 
+        }
+
+        .nut-mau:hover {
+            background-color: #0056b3;
+        }
  </style>
 </head>
 <body>
  <h1>Click to transfer to Youtube! Trust me
  </h1>
  
- <button onclick="chuyenTrang()">Click!
+ <button class="nut-mau" onclick="chuyenTrang()">Click!
     </button>
  
     <script>
